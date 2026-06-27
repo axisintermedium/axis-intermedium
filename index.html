@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXIS Intermedium — Consultoria Empresarial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:      #0E1F4A;
+  --navy-mid:  #1A3166;
+  --navy-light:#2A4A8A;
+  --gold:      #B8985A;
+  --gold-light:#D4B47A;
+  --white:     #FFFFFF;
+  --off-white: #F7F8FC;
+  --gray-100:  #EEF0F5;
+  --gray-300:  #C8CCD8;
+  --gray-500:  #8892A4;
+  --gray-700:  #4A5568;
+  --text-dark: #0E1F4A;
+  --text-body: #3D4A5C;
+
+  --ff-serif:  'Playfair Display', Georgia, serif;
+  --ff-sans:   'Inter', system-ui, sans-serif;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+
+  --shadow-sm: 0 2px 12px rgba(14,31,74,0.06);
+  --shadow-md: 0 8px 32px rgba(14,31,74,0.10);
+  --shadow-lg: 0 20px 60px rgba(14,31,74,0.14);
+
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-sans);
+  color: var(--text-body);
+  background: var(--white);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+h1,h2,h3,h4 { font-family: var(--ff-serif); color: var(--text-dark); line-height: 1.2; }
+h1 { font-size: clamp(2rem, 5vw, 3.6rem); font-weight: 600; }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 600; }
+h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 500; }
+p  { font-size: 1rem; color: var(--text-body); }
+
+/* ============================================================
+   UTILITY
+   ============================================================ */
+.container { max-width: 1180px; margin: 0 auto; padding: 0 2rem; }
+.section    { padding: 7rem 0; }
+.section--alt { background: var(--off-white); }
+.section--dark { background: var(--navy); }
+
+.badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--ff-sans); font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--navy-light); border: 1px solid var(--gray-300);
+  padding: 0.45rem 1.1rem; border-radius: 50px;
+  background: rgba(255,255,255,0.8);
+}
+
+.section-label {
+  font-family: var(--ff-sans); font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); display: block; margin-bottom: 0.75rem;
+}
+
+.section-header { text-align: center; margin-bottom: 4rem; }
+.section-header p { max-width: 600px; margin: 1rem auto 0; color: var(--gray-500); font-size: 1.05rem; }
+
+.divider {
+  width: 40px; height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--navy-light));
+  margin: 1.2rem auto 0;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--ff-sans); font-size: 0.9rem; font-weight: 500;
+  padding: 0.85rem 2rem; border-radius: var(--radius-sm);
+  cursor: pointer; transition: var(--transition); text-decoration: none;
+  letter-spacing: 0.02em; border: none;
+}
+.btn-primary {
+  background: var(--navy); color: var(--white);
+  box-shadow: 0 4px 20px rgba(14,31,74,0.25);
+}
+.btn-primary:hover {
+  background: var(--navy-mid); transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(14,31,74,0.32);
+}
+.btn-outline {
+  background: transparent; color: var(--navy);
+  border: 1.5px solid var(--navy);
+}
+.btn-outline:hover {
+  background: var(--navy); color: var(--white); transform: translateY(-2px);
+}
+.btn-outline-white {
+  background: transparent; color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.5);
+}
+.btn-outline-white:hover {
+  background: rgba(255,255,255,0.1); border-color: var(--white);
+  transform: translateY(-2px);
+}
+.btn-gold {
+  background: var(--gold); color: var(--white);
+  box-shadow: 0 4px 20px rgba(184,152,90,0.35);
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.2rem 0;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+nav.scrolled {
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(14,31,74,0.08);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 0.6rem; text-decoration: none;
+}
+.nav-logo-text {
+  font-family: var(--ff-serif); font-size: 1.5rem; font-weight: 700;
+  color: var(--white); letter-spacing: 0.04em; transition: color var(--transition);
+}
+nav.scrolled .nav-logo-text { color: var(--navy); }
+nav.scrolled .nav-logo svg path { fill: var(--navy); }
+
+.nav-logo-key { width: 22px; height: 14px; }
+.nav-logo-key path { fill: var(--white); transition: fill var(--transition); }
+
+.nav-links {
+  display: flex; align-items: center; gap: 2.5rem; list-style: none;
+}
+.nav-links a {
+  font-size: 0.88rem; font-weight: 500; color: rgba(255,255,255,0.85);
+  text-decoration: none; letter-spacing: 0.02em; transition: color var(--transition);
+}
+.nav-links a:hover { color: var(--white); }
+nav.scrolled .nav-links a { color: var(--gray-700); }
+nav.scrolled .nav-links a:hover { color: var(--navy); }
+
+.nav-cta {
+  font-size: 0.85rem; font-weight: 600; color: var(--white) !important;
+  background: var(--gold); padding: 0.55rem 1.4rem; border-radius: var(--radius-sm);
+  text-decoration: none; transition: var(--transition);
+  font-family: var(--ff-sans); letter-spacing: 0.03em;
+  box-shadow: 0 3px 12px rgba(184,152,90,0.35);
+}
+nav.scrolled .nav-cta { background: var(--gold); color: var(--white) !important; }
+.nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(184,152,90,0.45); }
+
+.hamburger {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer;
+  background: none; border: none; padding: 4px;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px; background: var(--white);
+  transition: var(--transition); border-radius: 2px;
+}
+nav.scrolled .hamburger span { background: var(--navy); }
+
+.mobile-menu {
+  display: none; position: fixed; inset: 0; top: 70px;
+  background: var(--white); z-index: 99; padding: 2rem;
+  flex-direction: column; gap: 1.5rem;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-size: 1.1rem; font-weight: 500; color: var(--navy);
+  text-decoration: none; padding: 0.75rem 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+#hero {
+  min-height: 100vh; display: flex; align-items: center;
+  background: var(--navy);
+  position: relative; overflow: hidden; padding-top: 5rem;
+}
+
+/* Geometric background elements */
+.hero-bg-shape {
+  position: absolute; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.05);
+  animation: pulse-ring 8s ease-in-out infinite;
+}
+.hero-bg-shape:nth-child(1) { width: 600px; height: 600px; top: -200px; right: -150px; animation-delay: 0s; }
+.hero-bg-shape:nth-child(2) { width: 400px; height: 400px; top: -80px; right: -30px; animation-delay: 1s; }
+.hero-bg-shape:nth-child(3) { width: 800px; height: 800px; bottom: -300px; left: -200px; animation-delay: 2s; }
+
+.hero-line {
+  position: absolute; background: rgba(184,152,90,0.12);
+  animation: float-line 12s ease-in-out infinite;
+}
+.hero-line:nth-child(4) {
+  width: 1px; height: 200px; top: 15%; right: 20%;
+  animation-delay: 0s;
+}
+.hero-line:nth-child(5) {
+  width: 80px; height: 1px; top: 30%; right: 18%;
+  animation-delay: 3s;
+}
+.hero-line:nth-child(6) {
+  width: 1px; height: 120px; bottom: 20%; left: 8%;
+  animation-delay: 1.5s;
+}
+
+@keyframes pulse-ring {
+  0%,100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.04); opacity: 0.6; }
+}
+@keyframes float-line {
+  0%,100% { transform: translateY(0); opacity: 0.6; }
+  50%      { transform: translateY(-20px); opacity: 1; }
+}
+
+.hero-inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center; padding: 3rem 0;
+}
+
+.hero-content { animation: fadeInUp 0.9s ease both; }
+.hero-visual  { animation: fadeInUp 0.9s ease 0.2s both; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold-light);
+  border: 1px solid rgba(184,152,90,0.3);
+  padding: 0.45rem 1.1rem; border-radius: 50px; margin-bottom: 2rem;
+  background: rgba(184,152,90,0.06);
+}
+.hero-badge-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: var(--gold);
+}
+
+.hero-title { color: var(--white); margin-bottom: 1.5rem; }
+.hero-title em { font-style: normal; color: var(--gold-light); }
+
+.hero-subtitle {
+  color: rgba(255,255,255,0.65); font-size: 1.05rem; line-height: 1.8;
+  margin-bottom: 2.5rem; max-width: 500px;
+}
+
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* Logo SVG no hero */
+.hero-logo-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 3rem;
+}
+.hero-logo-axis {
+  font-family: var(--ff-serif); font-size: clamp(4rem, 8vw, 6.5rem);
+  font-weight: 700; color: var(--white); letter-spacing: 0.05em;
+  line-height: 1; text-align: center;
+  animation: fadeInScale 1s ease 0.4s both;
+}
+.hero-logo-key-wrap {
+  margin-top: 0.8rem;
+  animation: fadeInScale 1s ease 0.7s both;
+}
+.hero-logo-sub {
+  font-family: var(--ff-sans); font-size: 0.75rem; font-weight: 400;
+  letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.35);
+  text-align: center; margin-top: 1rem;
+  animation: fadeInScale 1s ease 0.9s both;
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.hero-divider {
+  width: 1px; height: 100%; background: rgba(255,255,255,0.1);
+  position: absolute; left: 50%; top: 0;
+}
+
+/* ============================================================
+   SOBRE / PILARES
+   ============================================================ */
+.pilares-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+.pilar-card {
+  background: var(--white); border: 1px solid var(--gray-100);
+  border-radius: var(--radius-md); padding: 2rem 1.75rem;
+  transition: var(--transition); position: relative; overflow: hidden;
+}
+.pilar-card::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--navy-light));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--transition);
+}
+.pilar-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+.pilar-card:hover::before { transform: scaleX(1); }
+
+.pilar-icon {
+  width: 48px; height: 48px; border-radius: var(--radius-sm);
+  background: var(--off-white); display: flex; align-items: center;
+  justify-content: center; margin-bottom: 1.25rem;
+}
+.pilar-icon svg { width: 22px; height: 22px; stroke: var(--navy); fill: none; stroke-width: 1.5; }
+.pilar-card h3 { margin-bottom: 0.75rem; font-size: 1.1rem; }
+.pilar-card p  { font-size: 0.9rem; color: var(--gray-500); line-height: 1.6; }
+
+.sobre-text { max-width: 620px; }
+.sobre-text p { font-size: 1.05rem; color: var(--gray-700); line-height: 1.85; margin-bottom: 1.5rem; }
+
+.sobre-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: start;
+}
+
+/* ============================================================
+   SERVIÇOS
+   ============================================================ */
+.servicos-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.75rem;
+}
+.servico-card {
+  background: var(--white); border: 1px solid var(--gray-100);
+  border-radius: var(--radius-md); padding: 2.25rem 2rem;
+  transition: var(--transition); cursor: default;
+}
+.servico-card:hover {
+  border-color: var(--navy-light); box-shadow: var(--shadow-md);
+  transform: translateY(-5px);
+}
+.servico-number {
+  font-family: var(--ff-serif); font-size: 2.5rem; font-weight: 700;
+  color: var(--gray-100); line-height: 1; margin-bottom: 1.25rem;
+  letter-spacing: -0.02em;
+}
+.servico-icon {
+  width: 40px; height: 40px; margin-bottom: 1.25rem;
+  display: flex; align-items: center; justify-content: center;
+}
+.servico-icon svg { width: 28px; height: 28px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+.servico-card h3 { margin-bottom: 0.75rem; font-size: 1.15rem; }
+.servico-card p  { font-size: 0.9rem; color: var(--gray-500); line-height: 1.7; }
+.servico-link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  margin-top: 1.25rem; font-size: 0.85rem; font-weight: 500;
+  color: var(--navy-light); text-decoration: none;
+  transition: gap var(--transition);
+}
+.servico-link:hover { gap: 0.7rem; }
+.servico-link svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+/* ============================================================
+   PLANOS
+   ============================================================ */
+.planos-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem; align-items: start;
+}
+.plano-card {
+  background: var(--white); border: 1px solid var(--gray-100);
+  border-radius: var(--radius-lg); padding: 2.5rem 2rem;
+  transition: var(--transition); position: relative;
+}
+.plano-card:hover { box-shadow: var(--shadow-md); transform: translateY(-4px); }
+
+.plano-card--featured {
+  background: var(--navy); border-color: var(--navy);
+  box-shadow: var(--shadow-lg);
+}
+.plano-card--featured:hover { transform: translateY(-6px); box-shadow: 0 28px 70px rgba(14,31,74,0.22); }
+
+.plano-badge {
+  display: inline-block; font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--gold); color: var(--white);
+  padding: 0.3rem 0.85rem; border-radius: 50px; margin-bottom: 1.5rem;
+}
+.plano-name {
+  font-family: var(--ff-serif); font-size: 1.4rem; font-weight: 600;
+  color: var(--text-dark); margin-bottom: 0.5rem;
+}
+.plano-card--featured .plano-name { color: var(--white); }
+.plano-price {
+  font-family: var(--ff-serif); font-size: 2.8rem; font-weight: 700;
+  color: var(--navy); line-height: 1; margin-bottom: 0.25rem;
+}
+.plano-card--featured .plano-price { color: var(--gold-light); }
+.plano-price-label {
+  font-size: 0.82rem; color: var(--gray-500); margin-bottom: 1.75rem;
+}
+.plano-card--featured .plano-price-label { color: rgba(255,255,255,0.5); }
+
+.plano-divider {
+  border: none; border-top: 1px solid var(--gray-100); margin-bottom: 1.75rem;
+}
+.plano-card--featured .plano-divider { border-color: rgba(255,255,255,0.12); }
+
+.plano-features { list-style: none; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 0.85rem; }
+.plano-features li {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-size: 0.92rem; color: var(--text-body);
+}
+.plano-card--featured .plano-features li { color: rgba(255,255,255,0.85); }
+.plano-check {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: rgba(14,31,74,0.06); display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+}
+.plano-card--featured .plano-check { background: rgba(255,255,255,0.12); }
+.plano-check svg { width: 10px; height: 10px; stroke: var(--navy); fill: none; stroke-width: 2.5; }
+.plano-card--featured .plano-check svg { stroke: var(--gold-light); }
+
+.plano-desc {
+  font-size: 0.92rem; color: var(--gray-500); line-height: 1.7; margin-bottom: 2rem;
+}
+.plano-card--featured .plano-desc { color: rgba(255,255,255,0.55); }
+
+/* ============================================================
+   AVALIAÇÃO
+   ============================================================ */
+#avaliacao { text-align: center; }
+.stars-container {
+  display: flex; justify-content: center; gap: 0.6rem; margin: 2.5rem 0 1rem;
+}
+.star {
+  width: 48px; height: 48px; cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  color: var(--gray-300);
+}
+.star:hover, .star.active { color: var(--gold); }
+.star svg { width: 100%; height: 100%; fill: currentColor; }
+.star:hover  { transform: scale(1.2) rotate(-5deg); }
+.star.active { transform: scale(1.1); }
+
+.rating-label {
+  font-size: 0.88rem; color: var(--gray-500); margin-bottom: 1.75rem; min-height: 1.4em;
+}
+
+.rating-submit { margin: 0 auto; display: block; }
+
+.rating-thanks {
+  display: none; flex-direction: column; align-items: center; gap: 1rem;
+  animation: popIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.rating-thanks.show { display: flex; }
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.thanks-icon {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  display: flex; align-items: center; justify-content: center;
+}
+.thanks-icon svg { width: 28px; height: 28px; stroke: var(--white); fill: none; stroke-width: 2; }
+.thanks-title { font-family: var(--ff-serif); font-size: 1.5rem; color: var(--navy); }
+.thanks-sub   { color: var(--gray-500); font-size: 0.95rem; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--navy); color: rgba(255,255,255,0.7);
+  padding: 5rem 0 2.5rem;
+}
+.footer-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 3rem; margin-bottom: 4rem;
+}
+.footer-col h4 {
+  font-family: var(--ff-serif); font-size: 1.1rem; font-weight: 600;
+  color: var(--white); margin-bottom: 1.25rem;
+}
+.footer-col p { font-size: 0.88rem; line-height: 1.8; }
+
+.footer-logo-text {
+  font-family: var(--ff-serif); font-size: 2rem; font-weight: 700;
+  color: var(--white); letter-spacing: 0.06em; margin-bottom: 0.25rem;
+}
+.footer-logo-sub {
+  font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.5rem; display: block;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+.footer-links a {
+  font-size: 0.88rem; color: rgba(255,255,255,0.65); text-decoration: none;
+  transition: color var(--transition);
+}
+.footer-links a:hover { color: var(--gold-light); }
+
+.footer-contact-item {
+  display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem;
+}
+.footer-contact-item svg {
+  width: 16px; height: 16px; stroke: var(--gold); fill: none;
+  stroke-width: 1.5; flex-shrink: 0; margin-top: 2px;
+}
+.footer-contact-item span { font-size: 0.87rem; line-height: 1.6; }
+.footer-contact-item a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color var(--transition); }
+.footer-contact-item a:hover { color: var(--gold-light); }
+
+.footer-divider { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin-bottom: 2rem; }
+
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-bottom p { font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+.footer-year {
+  font-family: var(--ff-serif); font-size: 0.9rem; font-weight: 600;
+  color: var(--gold); letter-spacing: 0.05em;
+}
+
+.footer-plan-btns { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 1.25rem; }
+.footer-plan-btns .btn {
+  font-size: 0.82rem; padding: 0.6rem 1.25rem; justify-content: center;
+}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal {
+  opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+  .hero-subtitle { margin: 0 auto 2.5rem; }
+  .hero-btns { justify-content: center; }
+  .hero-logo-wrap { padding: 2rem; }
+  .sobre-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+}
+@media (max-width: 600px) {
+  .section { padding: 5rem 0; }
+  .servicos-grid { grid-template-columns: 1fr; }
+  .planos-grid   { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .hero-logo-axis { font-size: 3.5rem; }
+  h1 { font-size: 1.9rem; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVEGAÇÃO
+     ============================================================ -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo" aria-label="AXIS Intermedium">
+        <span class="nav-logo-text">AXIS</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#planos">Planos</a></li>
+        <li><a href="#avaliacao">Avaliações</a></li>
+      </ul>
+
+      <a href="#planos" class="btn nav-cta">Nossos Planos</a>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre"      onclick="closeMenu()">Sobre</a>
+  <a href="#servicos"   onclick="closeMenu()">Serviços</a>
+  <a href="#planos"     onclick="closeMenu()">Planos</a>
+  <a href="#avaliacao"  onclick="closeMenu()">Avaliações</a>
+  <a href="#planos" class="btn btn-gold" onclick="closeMenu()">Nossos Planos</a>
+</div>
+
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero">
+  <!-- Background shapes -->
+  <div class="hero-bg-shape"></div>
+  <div class="hero-bg-shape"></div>
+  <div class="hero-bg-shape"></div>
+  <div class="hero-line"></div>
+  <div class="hero-line"></div>
+  <div class="hero-line"></div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <!-- Content -->
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Consultoria Empresarial &bull; Marketing &bull; Tecnologia &bull; Estratégia
+        </div>
+
+        <h1 class="hero-title">
+          Transformamos gestão em <em>crescimento sustentável.</em>
+        </h1>
+
+        <p class="hero-subtitle">
+          A AXIS Intermedium integra estratégia, tecnologia, marketing e gestão financeira para impulsionar empresas com inteligência, inovação e resultados consistentes.
+        </p>
+
+        <div class="hero-btns">
+          <a href="#planos" class="btn btn-gold">Conheça nossos planos</a>
+          <a href="mailto:axis.intermedium@gmail.com" class="btn btn-outline-white">Fale com nossa equipe</a>
+        </div>
+      </div>
+
+      <!-- Logo visual -->
+      <div class="hero-visual">
+        <div class="hero-logo-wrap">
+          <div class="hero-logo-axis">AXIS</div>
+          <div class="hero-logo-key-wrap">
+            <!-- Ornate key SVG inspired by logo -->
+            <svg width="160" height="55" viewBox="0 0 320 110" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <!-- Key ring (ornate circle) -->
+              <circle cx="68" cy="55" r="44" stroke="rgba(255,255,255,0.25)" stroke-width="3"/>
+              <circle cx="68" cy="55" r="33" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+              <circle cx="68" cy="55" r="22" stroke="rgba(184,152,90,0.5)" stroke-width="2"/>
+              <circle cx="68" cy="55" r="11" stroke="rgba(255,255,255,0.3)" stroke-width="1.5"/>
+              <circle cx="68" cy="55" r="5" fill="rgba(184,152,90,0.6)"/>
+              <!-- Decorative ring details -->
+              <path d="M68 11 Q80 20 90 11" stroke="rgba(184,152,90,0.4)" stroke-width="1.5" fill="none"/>
+              <path d="M68 99 Q80 90 90 99" stroke="rgba(184,152,90,0.4)" stroke-width="1.5" fill="none"/>
+              <path d="M24 55 Q33 43 24 31" stroke="rgba(184,152,90,0.4)" stroke-width="1.5" fill="none"/>
+              <!-- Key shaft -->
+              <path d="M107 55 L282 55" stroke="rgba(255,255,255,0.35)" stroke-width="6" stroke-linecap="round"/>
+              <path d="M109 55 L280 55" stroke="rgba(184,152,90,0.3)" stroke-width="2" stroke-linecap="round"/>
+              <!-- Shaft decorations -->
+              <line x1="150" y1="48" x2="150" y2="62" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+              <line x1="180" y1="48" x2="180" y2="62" stroke="rgba(255,255,255,0.2)" stroke-width="1.5"/>
+              <!-- Key teeth -->
+              <path d="M240 55 L240 38 L253 38 L253 55" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none" stroke-linejoin="round"/>
+              <path d="M258 55 L258 44 L270 44 L270 55" stroke="rgba(255,255,255,0.35)" stroke-width="3" fill="none" stroke-linejoin="round"/>
+              <!-- Key tip box -->
+              <rect x="274" y="46" width="20" height="18" rx="3" stroke="rgba(184,152,90,0.5)" stroke-width="2" fill="none"/>
+              <rect x="278" y="51" width="12" height="8" rx="1" stroke="rgba(184,152,90,0.3)" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <p class="hero-logo-sub">Intermedium</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SOBRE
+     ============================================================ -->
+<section id="sobre" class="section">
+  <div class="container">
+    <div class="sobre-inner">
+      <!-- Texto -->
+      <div class="sobre-text reveal">
+        <span class="section-label">Quem somos</span>
+        <h2>Uma empresa construída para transformar negócios.</h2>
+        <div class="divider" style="margin: 1.2rem 0;"></div>
+        <p>
+          A AXIS Intermedium nasceu com o propósito de ser o elo entre onde sua empresa está e onde ela pode chegar. Combinamos consultoria estratégica de alto nível com execução prática, entregando soluções integradas de marketing, tecnologia, finanças e gestão.
+        </p>
+        <p>
+          Cada empresa tem uma trajetória única. Nossa missão é entender profundamente o seu negócio e desenhar caminhos que gerem crescimento real, sustentável e consistente — com método, inteligência e comprometimento total com seus resultados.
+        </p>
+        <a href="mailto:axis.intermedium@gmail.com" class="btn btn-primary" style="margin-top:0.5rem">
+          Converse com a nossa equipe
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Pilares grid -->
+      <div class="pilares-grid reveal">
+        <!-- Marketing -->
+        <div class="pilar-card">
+          <div class="pilar-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <h3>Marketing</h3>
+          <p>Estratégias orientadas por dados para posicionamento de marca, geração de demanda e crescimento de audiências.</p>
+        </div>
+        <!-- Tecnologia -->
+        <div class="pilar-card">
+          <div class="pilar-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+            </svg>
+          </div>
+          <h3>Tecnologia</h3>
+          <p>Transformação digital com desenvolvimento de sites, aplicativos e automações que ampliam a eficiência operacional.</p>
+        </div>
+        <!-- Finanças -->
+        <div class="pilar-card">
+          <div class="pilar-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+            </svg>
+          </div>
+          <h3>Finanças</h3>
+          <p>Planejamento financeiro estruturado, controle de fluxo de caixa e inteligência para decisões estratégicas mais seguras.</p>
+        </div>
+        <!-- Gestão -->
+        <div class="pilar-card">
+          <div class="pilar-icon">
+            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 20h20M6 20V10M12 20V4M18 20v-6"/>
+            </svg>
+          </div>
+          <h3>Gestão Estratégica</h3>
+          <p>Processos, pessoas e metas alinhados em torno de uma visão clara de onde sua empresa quer chegar.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SERVIÇOS
+     ============================================================ -->
+<section id="servicos" class="section section--alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">O que fazemos</span>
+      <h2>Serviços e diferenciais</h2>
+      <div class="divider"></div>
+      <p>Soluções integradas que atuam em conjunto para gerar impacto real no crescimento da sua empresa.</p>
+    </div>
+
+    <div class="servicos-grid">
+
+      <div class="servico-card reveal">
+        <div class="servico-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3>Desenvolvimento Empresarial</h3>
+        <p>Estruturamos a fundação do seu negócio — processos, cultura, modelo operacional — para que o crescimento seja sólido e escalável.</p>
+        <a href="mailto:axis.intermedium@gmail.com" class="servico-link">
+          Saiba mais
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="servico-card reveal">
+        <div class="servico-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+          </svg>
+        </div>
+        <h3>Estratégias de Crescimento</h3>
+        <p>Metodologias comprovadas para expansão de mercado, aquisição de clientes e aumento sustentável de receita com foco em resultados mensuráveis.</p>
+        <a href="mailto:axis.intermedium@gmail.com" class="servico-link">
+          Saiba mais
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="servico-card reveal">
+        <div class="servico-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+          </svg>
+        </div>
+        <h3>Planejamento Financeiro</h3>
+        <p>Diagnóstico, organização e projeções financeiras que garantem saúde fiscal e permitem que sua empresa tome decisões com confiança.</p>
+        <a href="mailto:axis.intermedium@gmail.com" class="servico-link">
+          Saiba mais
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="servico-card reveal">
+        <div class="servico-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <h3>Marketing Inteligente</h3>
+        <p>Do branding à geração de leads: campanhas integradas, presença digital consistente e comunicação que converte e fideliza clientes.</p>
+        <a href="mailto:axis.intermedium@gmail.com" class="servico-link">
+          Saiba mais
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="servico-card reveal">
+        <div class="servico-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/>
+            <path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"/>
+          </svg>
+        </div>
+        <h3>Transformação Digital</h3>
+        <p>Sites modernos, aplicativos sob medida e automações inteligentes que colocam a tecnologia a serviço do crescimento do seu negócio.</p>
+        <a href="mailto:axis.intermedium@gmail.com" class="servico-link">
+          Saiba mais
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="servico-card reveal">
+        <div class="servico-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <h3>Consultoria Estratégica</h3>
+        <p>Análise profunda do seu negócio, identificação de oportunidades e construção de planos de ação com foco em impacto e alta performance.</p>
+        <a href="mailto:axis.intermedium@gmail.com" class="servico-link">
+          Saiba mais
+          <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     PLANOS
+     ============================================================ -->
+<section id="planos" class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Planos e investimento</span>
+      <h2>Escolha o plano ideal para a sua empresa</h2>
+      <div class="divider"></div>
+      <p>Soluções pensadas para diferentes momentos e tamanhos de negócio, sempre com foco em resultado.</p>
+    </div>
+
+    <div class="planos-grid">
+
+      <!-- Plano Base — DESTAQUE -->
+      <div class="plano-card plano-card--featured reveal">
+        <span class="plano-badge">Mais popular</span>
+        <p class="plano-name">Plano Base</p>
+        <p class="plano-price">R$ 800</p>
+        <p class="plano-price-label">por mês · sem contrato de fidelidade</p>
+        <hr class="plano-divider">
+        <ul class="plano-features">
+          <li>
+            <span class="plano-check"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Marketing estratégico
+          </li>
+          <li>
+            <span class="plano-check"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Gestão Financeira
+          </li>
+          <li>
+            <span class="plano-check"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Planejamento Estratégico
+          </li>
+          <li>
+            <span class="plano-check"><svg viewBox="0 0 24 24" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+            Auxílio Empresarial completo
+          </li>
+        </ul>
+        <a href="https://wa.me/558199999999?text=Olá,%20tenho%20interesse%20no%20Plano%20Base%20da%20AXIS%20Intermedium"
+           class="btn btn-gold" style="width:100%;justify-content:center">
+          Contratar Plano
+        </a>
+      </div>
+
+      <!-- Plano Personalizado -->
+      <div class="plano-card reveal">
+        <p class="plano-name">Plano Personalizado</p>
+        <p class="plano-price" style="font-size:1.8rem;color:var(--navy)">Sob consulta</p>
+        <p class="plano-price-label">adaptado ao seu momento de negócio</p>
+        <hr class="plano-divider">
+        <p class="plano-desc">
+          Para empresas que precisam de uma solução mais ampla ou focada em áreas específicas. Desenvolvemos um plano sob medida, integrando apenas os serviços que fazem sentido para o seu objetivo — sem pagar pelo que não precisa.
+        </p>
+        <a href="https://wa.me/55XXXXXXXXXXX?text=Olá!%20Tenho%20interesse%20no%20Plano%20Personalizado%20da%20AXIS%20Intermedium."
+           target="_blank" rel="noopener"
+           class="btn btn-outline" style="width:100%;justify-content:center">
+          Entre em Contato
+        </a>
+      </div>
+
+      <!-- Sites & Apps -->
+      <div class="plano-card reveal">
+        <p class="plano-name">Sites &amp; Apps</p>
+        <p class="plano-price" style="font-size:1.8rem;color:var(--navy)">Sob orçamento</p>
+        <p class="plano-price-label">projetos digitais com entrega garantida</p>
+        <hr class="plano-divider">
+        <p class="plano-desc">
+          Criação de sites institucionais, landing pages e aplicativos mobile com design premium, performance otimizada e experiência de usuário superior. Cada projeto é desenvolvido do zero, com identidade visual alinhada à sua marca.
+        </p>
+        <a href="https://wa.me/55XXXXXXXXXXX?text=Olá!%20Gostaria%20de%20solicitar%20um%20orçamento%20para%20Sites%20%26%20Apps%20com%20a%20AXIS%20Intermedium."
+           target="_blank" rel="noopener"
+           class="btn btn-outline" style="width:100%;justify-content:center">
+          Solicitar Orçamento
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     AVALIAÇÃO
+     ============================================================ -->
+<section id="avaliacao" class="section section--alt">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Sua opinião importa</span>
+      <h2>Avalie a AXIS Intermedium</h2>
+      <div class="divider"></div>
+      <p>Como foi a sua experiência com a nossa equipe? Sua avaliação nos ajuda a evoluir continuamente.</p>
+    </div>
+
+    <div style="max-width:480px;margin:0 auto;text-align:center">
+      <!-- Rating UI -->
+      <div id="ratingForm">
+        <div class="stars-container" id="starsContainer" role="radiogroup" aria-label="Avaliação de 1 a 5 estrelas">
+          <div class="star" data-value="1" role="radio" aria-label="1 estrela" tabindex="0">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
+          <div class="star" data-value="2" role="radio" aria-label="2 estrelas" tabindex="0">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="star" data-value="3" role="radio" aria-label="3 estrelas" tabindex="0">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="star" data-value="4" role="radio" aria-label="4 estrelas" tabindex="0">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="star" data-value="5" role="radio" aria-label="5 estrelas" tabindex="0">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+        </div>
+
+        <p class="rating-label" id="ratingLabel">Selecione uma avaliação</p>
+
+        <button class="btn btn-primary rating-submit" id="submitRating" disabled
+                style="opacity:0.45;cursor:not-allowed;transition:opacity 0.3s">
+          Enviar avaliação
+        </button>
+      </div>
+
+      <!-- Thank you state -->
+      <div class="rating-thanks" id="ratingThanks">
+        <div class="thanks-icon">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        <p class="thanks-title">Muito obrigado!</p>
+        <p class="thanks-sub">Sua avaliação foi registrada e é muito importante para nós. Continuamos trabalhando para superar suas expectativas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Sobre nós -->
+      <div class="footer-col">
+        <div class="footer-logo-text">AXIS</div>
+        <span class="footer-logo-sub">Intermedium</span>
+        <p>
+          Somos uma consultoria empresarial comprometida com o crescimento real e sustentável de cada cliente. Integramos estratégia, marketing, tecnologia e finanças em soluções que geram impacto de verdade.
+        </p>
+      </div>
+
+      <!-- Planos -->
+      <div class="footer-col">
+        <h4>Nossos Planos</h4>
+        <ul class="footer-links">
+          <li><a href="#planos">Plano Base — R$ 800/mês</a></li>
+          <li><a href="#planos">Plano Personalizado</a></li>
+          <li><a href="#planos">Sites &amp; Aplicativos</a></li>
+        </ul>
+        <div class="footer-plan-btns">
+          <a href="mailto:axis.intermedium@gmail.com?subject=Interesse%20em%20Plano" class="btn btn-gold" style="font-size:0.82rem;padding:0.6rem 1.25rem">Contratar agora</a>
+          <a href="mailto:axis.intermedium@gmail.com" class="btn btn-outline-white" style="font-size:0.82rem;padding:0.6rem 1.25rem">Falar com a equipe</a>
+        </div>
+      </div>
+
+      <!-- Contato -->
+      <div class="footer-col">
+        <h4>Contato</h4>
+
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="#B8985A" stroke="none"/>
+          </svg>
+          <span><a href="https://instagram.com/axis.gp" target="_blank" rel="noopener">@axis.gp</a></span>
+        </div>
+
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <span><a href="mailto:axis.intermedium@gmail.com">axis.intermedium@gmail.com</a></span>
+        </div>
+
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span>Moreno — Pernambuco, Brasil</span>
+        </div>
+      </div>
+
+    </div>
+
+    <hr class="footer-divider">
+
+    <div class="footer-bottom">
+      <p>© <span id="currentYear"></span> AXIS Intermedium. Todos os direitos reservados.</p>
+      <p class="footer-year">Fundada em 2026</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+/* --- NAV SCROLL --- */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* --- HAMBURGER MENU --- */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+
+hamburger.addEventListener('click', () => {
+  mobileMenu.classList.toggle('open');
+});
+
+function closeMenu() {
+  mobileMenu.classList.remove('open');
+}
+
+/* --- SCROLL REVEAL --- */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      // stagger children
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, 80);
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* --- STAR RATING --- */
+const stars        = document.querySelectorAll('.star');
+const ratingLabel  = document.getElementById('ratingLabel');
+const submitBtn    = document.getElementById('submitRating');
+const ratingForm   = document.getElementById('ratingForm');
+const ratingThanks = document.getElementById('ratingThanks');
+
+const labels = ['', 'Ruim', 'Regular', 'Bom', 'Muito bom', 'Excelente! ✦'];
+
+let selectedRating = 0;
+
+function updateStars(hoverVal) {
+  stars.forEach(star => {
+    const v = parseInt(star.dataset.value);
+    star.classList.toggle('active', v <= hoverVal);
+  });
+}
+
+stars.forEach(star => {
+  const val = parseInt(star.dataset.value);
+
+  star.addEventListener('mouseenter', () => {
+    updateStars(val);
+    ratingLabel.textContent = labels[val];
+  });
+
+  star.addEventListener('mouseleave', () => {
+    updateStars(selectedRating);
+    ratingLabel.textContent = selectedRating ? labels[selectedRating] : 'Selecione uma avaliação';
+  });
+
+  star.addEventListener('click', () => {
+    selectedRating = val;
+    updateStars(val);
+    ratingLabel.textContent = labels[val];
+    submitBtn.disabled = false;
+    submitBtn.style.opacity = '1';
+    submitBtn.style.cursor = 'pointer';
+  });
+
+  star.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      star.click();
+    }
+  });
+});
+
+submitBtn.addEventListener('click', () => {
+  if (!selectedRating) return;
+  ratingForm.style.animation = 'fadeOut 0.3s ease forwards';
+  setTimeout(() => {
+    ratingForm.style.display = 'none';
+    ratingThanks.classList.add('show');
+  }, 300);
+});
+
+// inject fadeOut
+const style = document.createElement('style');
+style.textContent = '@keyframes fadeOut{to{opacity:0;transform:scale(0.95)}}';
+document.head.appendChild(style);
+
+/* --- FOOTER YEAR --- */
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+/* --- SMOOTH SCROLL for anchors --- */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', (e) => {
+    const target = document.querySelector(anchor.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+/* --- STAGGER REVEAL for grids --- */
+document.querySelectorAll('.pilares-grid, .servicos-grid, .planos-grid').forEach(grid => {
+  const cards = grid.querySelectorAll(':scope > *');
+  cards.forEach((card, i) => {
+    card.style.transitionDelay = `${i * 80}ms`;
+  });
+});
+</script>
+
+</body>
+</html>
